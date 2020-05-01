@@ -49,9 +49,9 @@ class Ikon:
     def set_blackouts(self):
         # Set blackout dates
         if self.base:
-            self.blackouts = "Dec 26, 2020 – Jan 2, 2021 \n\t\tJan 16-17, 2021 \n\t\tFeb 13-14, 2021\n"
+            self.blackout_dates = "Dec 26, 2020 – Jan 2, 2021 \n\t\tJan 16-17, 2021 \n\t\tFeb 13-14, 2021\n"
         else:
-            self.blackouts = "None\n"
+            self.blackout_dates = "None\n"
 
 
 
@@ -80,11 +80,20 @@ class Ikon:
         if self.base:
             limited_days = 5
 
+        # Set blackouts for base pass destinations
+        blackouts = np.full_like(destinations, "No")
+        if self.base:
+            blackouts = np.full_like(destinations, "Yes")
+            elements = [0,4,5,7,8]
+            for i in elements:
+                blackouts[i] = Yes
+
         days = np.full_like(destinations, "Ultd")
         days[split:] = limited_days
 
         self.dates_pd = pd.DataFrame()
         self.dates_pd['Destinations'] = destinations
         self.dates_pd['Days'] = days
+        self.dates_pd['Blackouts'] = blackouts
 
         return self.dates_pd

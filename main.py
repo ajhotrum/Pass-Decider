@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     ikon = int(input("Do you want an Ikon Pass? (0 for no, 1 for yes) " ))
     if ikon:
-        base_plus=0d
+        base_plus=0
         base = int(input("Full or Base pass? (0 for full, 1 for base) "))
 
         renew = int(input("Did you have an Ikon Pass last season? (0 for no, 1 for yes) "))
@@ -27,22 +27,37 @@ if __name__ == "__main__":
         ikon1 = Ikon(base, renew, insurance, college, base_plus)
 
         print(ikon1.make_days_grid())
-        print(f"\nCost: ${ikon1.price}")
-        print(f"\nBlackout Dates: {ikon1.blackouts}")
-        print("\nPerks: ??????????????")
+        print(f"\nIkon Cost: ${ikon1.price}")
+        print(f"\nIkon Blackout Dates: {ikon1.blackout_dates}")
+        print("\nIkon Perks: ??????????????\n")
 
 
     epic = int(input("Do you want an Epic Pass? (0 for no, 1 for yes)"))
     if epic:
-        base = 0
-        if college == None:
-            college = int(input("Are you a student interested in a PC youth pass (for students of all ages)? (0 for no, 1 for yes) "))
-        elif college == 1:
-            college = int(input("You said you are a college student. Are you interested in a PC youth pass? (0 for no, 1 for yes) "))
+        choice = int(input('Which pass are you interested in? (Enter a number between 1-4)'\
+                            '\n1: Epic Full\n2: Epic Local\n3: Epic Local College'\
+                            '\n4: PC Youth (applies to students of all ages)\n'))
 
-        if not college:
-            base = int(input("Do you want an Epic Full or Local pass? (0 for full, 1 for local) "))
+        if choice ==1:
+            base = False
+            college= False
+            youth = False
+        elif choice == 2:
+            base = True
+            college = False
+            youth = False
+        elif choice == 3:
+            base = False
+            college = True
+            youth = False
+        elif choice == 4:
+            base = False
+            college = False
+            youth = True
 
-        epic1 = Epic(base, college)
+        epic1 = Epic(base, college, youth)
 
         print(epic1.make_days_grid())
+        print(f"\nIkon Cost: ${epic1.price}")
+        print(f"\nIkon Blackout Dates: {epic1.blackout_dates}")
+        print(f"\nIkon Perks: {epic1.perks}\n")
