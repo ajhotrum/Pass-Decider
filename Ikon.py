@@ -9,6 +9,8 @@ class Ikon:
         self.renew = renew
         self.insurance = insurance
         self.college = college
+        self.perks = ['Season Deferal (decide between 9/10-12/10/2020)']
+        self.price_hike = "5/27/20"
 
         self.get_price()
         self.set_blackouts()
@@ -33,6 +35,12 @@ class Ikon:
                 self.price = 529
             else:
                 self.price = 709
+
+        # Add Perks
+        if self.base:
+            self.perks.append("25% off 8 buddy tickets (at participating mountains)")
+        else:
+            self.perks.append("25% off 10 buddy tickets (at participating mountains)")
 
         # Add insurance
         if self.insurance:

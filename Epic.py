@@ -8,6 +8,7 @@ class Epic:
         self.college = college
         self.youth = youth
         self.perks = ['Free Pass Insurance', '16 Discount Tickets']
+        self.price_hike = "9/7/20"
 
         self.get_price()
         self.set_blackouts()
@@ -17,6 +18,8 @@ class Epic:
         if not self.youth:
             if self.base:
                 self.price = 729
+            if self.college:
+                self.price = 659
             else:
                 self.price = 979
                 self.perks.append("No Blackout Dates")
